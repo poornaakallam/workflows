@@ -1,0 +1,39 @@
+name: workflows
+on:
+  workflow_call:
+    inputs:
+      distribution:
+        type: string
+        required: false
+      java-version:
+        type: string
+        required: false
+      server-id:
+        type: string
+        required: false
+      server-username:
+        type: string
+        required: false
+      server-password:
+        type: string
+        required: false
+      path: 
+        type: string
+        required: true
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/cache@v2
+        with:
+          path: "${{inputs.path}}"
+          key: "${{inputs.key}}"
+      - name:
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'liberica'
+          java-version: '17'
+          server-id: github
+          server-username: GITHUB_USER
+          server-password: GITHUB_USER_TOKEN

@@ -71,6 +71,6 @@ jobs:
         with:
           aws-access-key-id: '${{ secrets.access-key}}'
           aws-secret-access-key: '${{secrets.secret-key}}'
-          region: us-east-1
+          aws-region: us-east-1
           role-duration-seconds: 3600
       #- name: login amazon ecr

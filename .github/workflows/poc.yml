@@ -26,6 +26,9 @@ on:
       upload-path:
         type: string
         required: true
+      cmd:
+        type: string
+        required: true
     secrets:
       access-key:
         description: 'oidc role'
@@ -33,6 +36,8 @@ on:
       secret-key:
         description: 'key'
         required: true
+      
+    
       
     
 jobs:
@@ -56,7 +61,7 @@ jobs:
       #   run: |
       #     mvn versions:set -DnewVersion=SNAPSHOT-${{ env.SHA8}}
       - name: build project
-        run: mvn -f pom.xml clean package
+        run: '${{ inputs.cmd}}'
       # - name: zip artifacts
       #   run: |
       #     cd ${{ github.workspace }}/target/

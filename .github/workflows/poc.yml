@@ -26,8 +26,15 @@ on:
       upload-path:
         type: string
         required: true
+    secrets:
+      access-key:
+        description: 'oidc role'
+        required: true
+      secret-key:
+        description: 'key'
+        required: true
+      
     
-        
 jobs:
   build: 
     runs-on: ubuntu-latest
@@ -58,4 +65,12 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with: 
           name: fr.zip
-          path: ${{inputs.upload-path}}
+          path: "${{inputs.upload-path}}"
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4.0.1
+        with:
+          aws-access-key-id: '${{ secrets.access_key}}'
+          aws-secret-access-key: '${{secrets.secret-key}}'
+          region: us-east-1
+          role-duration-seconds: 3600
+      #- name: login amazon ecr

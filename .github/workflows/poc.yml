@@ -41,17 +41,17 @@ jobs:
           server-id: github
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN
-      - name: set artifact id
-        run: |
-          mvn versions:set -DnewVersion=SNAPSHOT-${{ env.SHA8}}
-      - name: build project
-        run: mvn -f pom.xml clean package
-      - name: zip artifacts
-        run: |
-          cd ${{ github.workspace }}/target/
-          zip fr.zip * .jar
+      # - name: set artifact id
+      #   run: |
+      #     mvn versions:set -DnewVersion=SNAPSHOT-${{ env.SHA8}}
+      # - name: build project
+      #   run: mvn -f pom.xml clean package
+      # - name: zip artifacts
+      #   run: |
+      #     cd ${{ github.workspace }}/target/
+      #     zip fr.zip * .jar
       - name: upload artifact
         uses: actions/upload-artifact@v3.1.3
         with: 
           name: fr.zip
-          path: ${{ github.workspace }}/target/fr.zip
+          path: ./src.zip

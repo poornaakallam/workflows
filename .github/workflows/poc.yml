@@ -55,8 +55,8 @@ jobs:
       # - name: set artifact id
       #   run: |
       #     mvn versions:set -DnewVersion=SNAPSHOT-${{ env.SHA8}}
-      # - name: build project
-      #   run: mvn -f pom.xml clean package
+      - name: build project
+        run: mvn -f pom.xml clean package
       # - name: zip artifacts
       #   run: |
       #     cd ${{ github.workspace }}/target/

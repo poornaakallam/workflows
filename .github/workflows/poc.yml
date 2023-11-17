@@ -19,10 +19,10 @@ on:
         required: false
       path: 
         type: string
-        required: true
+        required: false
       key:
         type: string
-        required: true
+        required: false
       upload-path:
         type: string
         required: true

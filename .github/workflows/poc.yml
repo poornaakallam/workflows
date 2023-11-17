@@ -25,10 +25,10 @@ on:
         required: false
       upload-path:
         type: string
-        required: true
+        required: false
       cmd:
         type: string
-        required: true
+        required: false
     secrets:
       access-key:
         description: 'oidc role'

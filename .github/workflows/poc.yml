@@ -44,12 +44,12 @@ jobs:
       - name: Determine OS and Set Hash
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
-             hash_value=$(sha256sum {} + | sort | sha256sum | cut -d ' ' -f 1)
+             hash_value=$(find . -name 'pom.xml' -type f -exec sha256sum {} + | sort | sha256sum | cut -d ' ' -f 1)
              else
              echo "Unsupported operating system"
              exit 1
           fi
-          echo "HASH_VALUE=${hashFiles}" >> $GITHUB_ENV
+          echo "HASH_VALUE=${hash_value}" >> $GITHUB_ENV
           echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           #RUNNER_OS: ${{ runner.os }}

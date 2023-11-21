@@ -56,6 +56,13 @@ jobs:
           echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           RUNNER_OS: ${{ runner.os }}
+      - name: Set Java Version
+        run: |
+          if [ "${{ java-version }}" == "17" ]; then
+            echo "JAVA_VERSION=17" >> $GITHUB_ENV
+          else
+            echo "JAVA_VERSION=11" >> $GITHUB_ENV
+          fi
           
       - name: checkout
         uses: actions/cache@v2
@@ -66,7 +73,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'liberica'
-          java-version: '17'
+          java-version: "${{inputs.java-version}}"
           server-id: github
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN

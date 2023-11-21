@@ -53,10 +53,10 @@ jobs:
           echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           RUNNER_OS: ${{ runner.os }}
-          JAVA_VERSION: ${java-version}
+          #JAVA_VERSION: ${java-version}
       - name: Set Java Version
         run: |
-          if [ "${java-version}" == "17" ]; then
+          if [ "$java-version" == "java-version" ]; then
             echo "JAVA_VERSION=17" >> $GITHUB_ENV
           else
             echo "JAVA_VERSION=11" >> $GITHUB_ENV

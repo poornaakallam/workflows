@@ -56,7 +56,7 @@ jobs:
           #JAVA_VERSION: ${java-version}
       - name: Set Java Version
         run: |
-          if [ "$JAVA_VERSION" == "java-version" ]; then
+          if [ "$JAVA_VERSION" == "true" ]; then
             echo "JAVA_VERSION=17" >> $GITHUB_ENV
           else
             echo "JAVA_VERSION=11" >> $GITHUB_ENV

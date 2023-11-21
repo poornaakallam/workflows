@@ -70,7 +70,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'liberica'
-          java-version: ${{ matrix.java-version }}
+          java-version: "${{inputs.java-version}}"
           server-id: github
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN

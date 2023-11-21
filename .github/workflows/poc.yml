@@ -51,9 +51,9 @@ jobs:
           # fi
           echo "HASH_VALUE=${hashFiles}" >> $GITHUB_ENV
           echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
-        #env:
+        env:
           #RUNNER_OS: ${{ runner.os }}
-          #JAVA_VERSION: ${java-version}
+          JAVA_VERSION: $JAVA_VERSION
       - name: Set Java Version
         run: |
           if [ "$JAVA_VERSION" = "11" ]; then

@@ -53,13 +53,13 @@ jobs:
           echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           RUNNER_OS: ${{ runner.os }}
-      # - name: Set Java Version
-      #   run: |
-      #     if [ "${{ java-version }}" == "17" ]; then
-      #       echo "JAVA_VERSION=17" >> $GITHUB_ENV
-      #     else
-      #       echo "JAVA_VERSION=11" >> $GITHUB_ENV
-      #     fi
+      - name: Set Java Version
+        run: |
+          if [ "${{ java-version }}" == "JAVA_VERSION" ]; then
+            echo "JAVA_VERSION=17" >> $GITHUB_ENV
+          else
+            echo "JAVA_VERSION=11" >> $GITHUB_ENV
+          fi
           
       - name: checkout
         uses: actions/cache@v2

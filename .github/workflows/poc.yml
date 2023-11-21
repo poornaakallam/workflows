@@ -40,18 +40,7 @@ jobs:
   build: 
     runs-on: ubuntu-latest
     
-    strategy:
-      matrix:
-        java-version: [11, 17]
-    
     steps:
-      - name: Deploy
-        if: matrix.java-version == 11
-        run: echo "Deploying for Java 11..."
-
-      - name: Notify
-        if: matrix.java-version != 11
-        run: echo "Not deploying for Java versions other than 11."
       - name: Determine OS and Set Hash
         run: |
           # if [ "$RUNNER_OS" == "Linux" ]; then
@@ -67,10 +56,10 @@ jobs:
           #JAVA_VERSION: ${java-version}
       - name: Set Java Version
         run: |
-          if [ "$JAVA_VERSION" == "true" ]; then
-            echo "JAVA_VERSION=17" >> $GITHUB_ENV
+          if [ "$JAVA_VERSION" = "11" ]; then
+            echo "JAVA_VERSION=$JAVA_VERSION" >> $GITHUB_ENV
           else
-            echo "JAVA_VERSION=11" >> $GITHUB_ENV
+            echo "JAVA_VERSION=17" >> $GITHUB_ENV
           fi
           
       - name: checkout
@@ -82,7 +71,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'liberica'
-          java-version: "${{inputs.java-version}}"
+          #java-version: "${{inputs.java-version}}"
+          java-version: $JAVA_VERSION
           server-id: github
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN

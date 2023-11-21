@@ -53,6 +53,7 @@ jobs:
           echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           RUNNER_OS: ${{ runner.os }}
+          JAVA_VERSION: ${java-version}
       - name: Set Java Version
         run: |
           if [ "${java-version}" == "java-version" ]; then

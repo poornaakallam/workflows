@@ -53,6 +53,7 @@ jobs:
             exit 1
           fi
           echo "HASH_VALUE=${hash_value}" >> $GITHUB_ENV
+          echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           RUNNER_OS: ${{ runner.os }}
       - name: checkout

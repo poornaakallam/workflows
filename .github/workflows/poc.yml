@@ -52,7 +52,7 @@ jobs:
           #   echo "Unsupported operating system"
           #   exit 1
           # fi
-          echo "HASH_VALUE=${{ hashFiles}}" >> $GITHUB_ENV
+          echo "HASH_VALUE=${hashFiles}" >> $GITHUB_ENV
           echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           RUNNER_OS: ${{ runner.os }}

@@ -55,7 +55,7 @@ jobs:
           RUNNER_OS: ${{ runner.os }}
       - name: Set Java Version
         run: |
-          if [ "${{ java-version }}" == "JAVA_VERSION" ]; then
+          if [ "${{ java_version }}" == "JAVA_VERSION" ]; then
             echo "JAVA_VERSION=17" >> $GITHUB_ENV
           else
             echo "JAVA_VERSION=11" >> $GITHUB_ENV

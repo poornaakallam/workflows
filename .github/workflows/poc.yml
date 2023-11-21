@@ -72,7 +72,7 @@ jobs:
         with:
           distribution: 'liberica'
           #java-version: "${{inputs.java-version}}"
-          java-version: '$JAVA_VERSION'
+          java-version: env.JAVA_VERSION
           server-id: github
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN

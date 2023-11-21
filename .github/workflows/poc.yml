@@ -44,6 +44,17 @@ jobs:
   build: 
     runs-on: ubuntu-latest
     steps:
+      - name: Determine OS and Set Hash
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            hash_value=$(find . -name 'pom.xml' -type f -exec sha256sum {} + | sort | sha256sum | cut -d ' ' -f 1)
+            else
+            echo "Unsupported operating system"
+            exit 1
+          fi
+          echo "HASH_VALUE=${hash_value}" >> $GITHUB_ENV
+        env:
+          RUNNER_OS: ${{ runner.os }}
       - name: checkout
         uses: actions/cache@v2
         with:

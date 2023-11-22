@@ -71,14 +71,13 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'liberica'
-          #java-version: "${{inputs.java-version}}"
-          java-version: env.JAVA_VERSION
+          java-version: "${{inputs.java-version}}"
           server-id: github
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN
-      # - name: set artifact id
-      #   run: |
-      #     mvn versions:set -DnewVersion=SNAPSHOT-${{ env.SHA8}}
+      - name: set artifact id
+        run: |
+          mvn versions:set -DnewVersion=SNAPSHOT-${{ env.SHA8}}
       - name: build project
         run: '${{ inputs.cmd}}'
       # - name: zip artifacts

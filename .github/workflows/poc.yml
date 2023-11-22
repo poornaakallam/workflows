@@ -29,6 +29,9 @@ on:
       cmd:
         type: string
         required: false
+      build:
+        type: string
+        required: false
       working-directory:
         type: string
         required: false
@@ -84,13 +87,13 @@ jobs:
           path: ./
       - name: set artifact id
         run: ${{inputs.cmd}}
-        working-directory: ${{inputs.working-directory}}
-      #- name: build project
-      #  run: '${{ inputs.cmd}}'
-      # - name: zip artifacts
-      #   run: |
-      #     cd ${{ github.workspace }}/target/
-      #     zip fr.zip * .jar
+        #working-directory: ${{inputs.working-directory}}
+      - name: build project
+        run: '${{ inputs.build}}'
+      - name: zip artifacts
+        run: |
+          cd ${{ github.workspace }}/target/
+          zip fr.zip * .jar
       - name: upload artifact
         uses: actions/upload-artifact@v3.1.3
         with: 

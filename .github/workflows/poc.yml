@@ -29,6 +29,9 @@ on:
       cmd:
         type: string
         required: false
+      working-directory:
+        type: string
+        required: false
     secrets:
       access-key:
         description: 'oidc role'
@@ -77,6 +80,7 @@ jobs:
           server-password: GITHUB_USER_TOKEN
       - name: set artifact id
         run: ${{inputs.cmd}}
+        working-directory: ${{inputs.working-directory}}
       #- name: build project
       #  run: '${{ inputs.cmd}}'
       # - name: zip artifacts

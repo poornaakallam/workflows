@@ -64,7 +64,6 @@ jobs:
           else
             echo "JAVA_VERSION=17" >> $GITHUB_ENV
           fi
-          
       - name: checkout
         uses: actions/cache@v2
         with:
@@ -78,6 +77,11 @@ jobs:
           server-id: github
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN
+      - name: Checkout Java Project Repository
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          path: ./
       - name: set artifact id
         run: ${{inputs.cmd}}
         working-directory: ${{inputs.working-directory}}

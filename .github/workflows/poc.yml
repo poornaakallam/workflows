@@ -76,10 +76,9 @@ jobs:
           server-username: GITHUB_USER
           server-password: GITHUB_USER_TOKEN
       - name: set artifact id
-        run: |
-          mvn versions:set -DnewVersion=SNAPSHOT-${{ env.SHA8}}
-      - name: build project
-        run: '${{ inputs.cmd}}'
+        run: ${{inputs.cmd}}
+      #- name: build project
+      #  run: '${{ inputs.cmd}}'
       # - name: zip artifacts
       #   run: |
       #     cd ${{ github.workspace }}/target/

@@ -98,7 +98,7 @@ jobs:
         run: '${{ inputs.build}}'
       - name: zip artifacts
         run: |
-          ${{inputs.atrifact}
+          ${{inputs.atrifact}}
           ${{inputs.zip}}
       - name: upload artifact
         uses: actions/upload-artifact@v3.1.3

@@ -49,10 +49,21 @@ on:
         description: 'key'
         required: true  
 jobs:
-  build: 
+  print: 
     runs-on: ubuntu-latest
+    env:
+      GITHUB_USER: github
+      GITHUB_USER_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    outputs: 
+      GITHUB_USER: ${{ steps.step1.outputs.some_var }}
+      GITHUB_USER_TOKEN: ${{ steps.step1.outputs.anthor_var }}
     
     steps:
+      - name: print outputs
+        id: step1
+        run: |
+          echo "some_var=$GITHUB_USER" >> $GITHUB_OUTPUT
+          echo "anthor_var=$GITHUB_USER_TOKEN" >> $GITHUB_OUTPUT
       - name: Determine OS and Set Hash
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then

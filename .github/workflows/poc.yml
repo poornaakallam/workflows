@@ -64,16 +64,16 @@ jobs:
         run: |
           echo "some_var=$GITHUB_USER" >> $GITHUB_OUTPUT
           echo "anthor_var=$GITHUB_USER_TOKEN" >> $GITHUB_OUTPUT
-      - name: Determine OS and Set Hash
-        run: |
-          if [ "$RUNNER_OS" == "Linux" ]; then
-             hash_value=$(find . -name 'pom.xml' -type f -exec sha256sum {} + | sort | sha256sum | cut -d ' ' -f 1)
-             else
-             echo "Unsupported operating system"
-             exit 1
-          fi
-          echo "HASH_VALUE=${hash_value}" >> $GITHUB_ENV
-          echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
+      # - name: Determine OS and Set Hash
+      #   run: |
+      #     if [ "$RUNNER_OS" == "Linux" ]; then
+      #        hash_value=$(find . -name 'pom.xml' -type f -exec sha256sum {} + | sort | sha256sum | cut -d ' ' -f 1)
+      #        else
+      #        echo "Unsupported operating system"
+      #        exit 1
+      # #     fi
+      #     echo "HASH_VALUE=${hash_value}" >> $GITHUB_ENV
+      #     echo "RUNNER_OS=${{ runner.os }}" >> $GITHUB_ENV
         env:
           #RUNNER_OS: ${{ runner.os }}
           JAVA_VERSION: $JAVA_VERSION
@@ -88,7 +88,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: "${{inputs.path}}"
-          key: "${{inputs.key}}"
+          key: "${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}"
       - name: java
         uses: actions/setup-java@v3
         with:
